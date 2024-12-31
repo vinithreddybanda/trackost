@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tractor Rent Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f1f4f9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .calculator-container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 30px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #343a40;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .form-label {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        .btn-calculate {
+            width: 100%;
+            font-size: 1.1rem;
+            padding: 10px;
+        }
+        .result {
+            font-size: 1.25rem;
+            text-align: center;
+            margin-top: 20px;
+            color: #28a745;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator-container">
+        <h2>Tractor Rent Calculator</h2>
+        <form id="rentCalculator">
+            <div class="mb-4">
+                <label for="hourlyRate" class="form-label">Cost Per Hour (₹):</label>
+                <input type="number" id="hourlyRate" class="form-control" placeholder="Enter cost per hour" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="totalMinutes" class="form-label">Total Minutes:</label>
+                <input type="number" id="totalMinutes" class="form-control" placeholder="Enter total minutes rented" required>
+            </div>
+
+            <button type="button" class="btn btn-primary btn-calculate" onclick="calculateTotal()">Calculate Total</button>
+        </form>
+
+        <div id="result" class="result"></div>
+    </div>
+
+    <footer class="footer">
+        © 2024 Tractor Rent Calculator - Designed for Farmers
+    </footer>
+
+    <script>
+        function calculateTotal() {
+            const hourlyRate = parseFloat(document.getElementById('hourlyRate').value);
+            const totalMinutes = parseInt(document.getElementById('totalMinutes').value);
+
+            if (isNaN(hourlyRate) || hourlyRate <= 0) {
+                alert('Please enter a valid hourly rate.');
+                return;
+            }
+
+            if (isNaN(totalMinutes) || totalMinutes <= 0) {
+                alert('Please enter a valid total minutes.');
+                return;
+            }
+
+            const cost = (hourlyRate / 60) * totalMinutes;
+            document.getElementById('result').innerText = `Total Cost: ₹${cost.toFixed(2)}`;
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
